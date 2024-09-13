@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Científica</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="formula-box" id="formulaBox">
+            <div class="formula">Selecciona una fórmula</div>
+        </div>
+        <div class="inputs-box" id="inputsBox">
+            <div id="inputsContainer"></div>
+            <button onclick="calculateCustomResult()">Calcular</button>
+        </div>
+        <div class="display" id="display"></div>
+        <div></div>
+        
+        <div class="buttons">
+            <button onclick="clearDisplay()" class="double">C</button>
+            <button style="grid-column: span 2;" onclick="backspace()">←</button>
+            <button onclick="appendToDisplay('/')">/</button>
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('*')">*</button>
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('-')">-</button>
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('+')">+</button>
+            <button style="grid-column: span 2;" onclick="appendToDisplay('0')" class="double">0</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            <button onclick="appendToDisplay('log10(')" class="operator">log10</button>
+            <button onclick="appendToDisplay('ln(')" class="operator">ln</button>
+            <button onclick="appendToDisplay('sqrt(')" class="operator">√</button>
+            <button onclick="appendToDisplay('sin(')" class="operator">sin</button>
+            <button onclick="appendToDisplay('cos(')" class="operator">cos</button>
+            <button onclick="appendToDisplay('tan(')" class="operator">tan</button>
+            <button onclick="appendToDisplay('exp(')" class="operator">exp</button>
+            <button onclick="appendToDisplay('^')" class="operator">^</button>
+            <button onclick="calculateResult()" class="operator triple">=</button>
+            <button onclick="appendToDisplay('(')" class="operator">(</button>
+            <button onclick="appendToDisplay(')')" class="operator">)</button>
+        </div>
+        <div class="buttons-left">
+            
+            <button id="wavelengthButton" onclick="showFormula('wavelength')">Longitud de Onda</button>
+            <button id="frequencyButton" onclick="showFormula('frequency')">Frecuencia</button>
+            <button id="velocityButton" onclick="showFormula('velocity')">Velocidad</button>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
