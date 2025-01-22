@@ -1,0 +1,325 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    min-height: 100vh;  
+    background: linear-gradient(135deg, #222222, #000000);
+    color: #fff;
+    margin-top: 3%;
+}
+
+/* Contenedor del video de fondo */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1; /* Envía el video detrás del contenido */
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que el video cubra toda la pantalla */
+    filter: blur(2px); /* Añade el efecto de desenfoque */
+    opacity: 0,8; /* Controla la opacidad del video */
+}
+
+.info-panel {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo negro con 80% de opacidad */
+    color: white; /* Texto en blanco */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para un efecto de elevación */
+    margin: auto; /* Centrar horizontalmente el panel */
+    max-width: 80%; /* Ancho máximo del panel */
+    text-align: center; /* Centrar el texto */
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 80%;
+    padding: 20px;
+    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
+    gap: 20px; /* Espacio entre la columna de botones y la calculadora */
+}
+
+.content2 {
+    margin-left: 13%;
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    max-width: 105%;
+    padding: 20px;
+    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho total */
+    gap: 20px; /* Espacio entre la columna de botones y la calculadora */
+}
+
+.buttons-left {
+    width: 100%;
+    display: flex;
+    gap: 0.5%; /* Espacio entre botones */
+    margin-right: 1%; /* Espacio a la derecha */
+    margin-bottom: 1%; /* Espacio en la parte inferior */
+}
+
+.buttons-left button {
+    background-color: #444;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1em;
+    padding: 10px;
+    text-align: center;
+    width: 200%;
+}
+
+.buttons-left button:hover {
+    background-color: #555;
+}
+
+.calculator {
+    border: 1px solid #333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    width: 96%;
+    max-width: 100%;
+    background-color: #222;
+    display: flex;
+    grid-template-rows: auto 1fr auto;
+    padding: 2%; /* Añade padding interno para el contenido */
+    margin-top: 4%;
+}
+.calculator2 {
+    flex-direction: column;
+    border: 1px solid #333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    width: 80%;
+    max-width: 80%;
+    background-color: #222;
+    display: flex;
+    grid-template-rows: auto 1fr auto;
+    padding: 2%; /* Añade padding interno para el contenido */
+}
+
+.formula-box, .inputs-box, .display, .inputs-container {
+    background-color: #333;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.5em;
+    border-bottom: 2px solid #444;
+}
+
+.display {
+    font-size: 2em;
+    background-color: #111;
+    border-bottom: none;
+    overflow: auto;
+    padding: 10px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+button {
+    background-color: #444;
+    border: none;
+    font-size: 1.5em;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+button.operator {
+    background-color: #f39c12;
+    color: #fff;
+}
+
+button.operator:hover {
+    background-color: #e67e22;
+}
+
+button.double, button.triple {
+    grid-column: span 2;
+}
+
+.input-container input[type="number"] {
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    width: 120px;
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    outline: none;
+}
+
+.inputs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Ajusta el espacio entre los inputs */
+    background-color: #333;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #444;
+}
+
+.input-container input[type="number"] {
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    width: 120px;
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    outline: none;
+}
+
+.input-container input[type="number"]:focus {
+    border-color: #f39c12;
+    box-shadow: 0 0 5px rgba(243, 156, 18, 0.5);
+}
+
+.unit-dropdown {
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+    background-color: #222;
+    color: #fff;
+    width: auto;
+    min-width: 100px;
+}
+
+
+.unit-divider {
+    margin: 0 10px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.input-container label {
+    font-size: 14px;
+    margin-right: 10px;
+    color: #fff;
+}
+
+#cablesContainer {
+    margin-top: 10px;
+}
+
+.add-cable-button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.remove-button {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+/* Contenedor del slider */
+/* Contenedor del slider */
+.slider-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%; /* 70% del ancho de la pantalla */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.slider-background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+}
+
+
+.slider-buttons {
+    padding-top: 0.8%;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-button {
+    flex: 1; /* Cada botón ocupa el 33% del contenedor */
+    color: #acacac;
+    font-size: 1em;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    z-index: 2;
+}
+
+.slider-button:hover {
+    color: #ddd;
+}
+
+.slider-button.active {
+    color: #ffffff; /* Color del botón activo */
+}
+
+
+.logo-container {
+    justify-content: left;
+    align-items: left;
+    margin-top: 20px;
+}
+
+.logo {
+    max-width: 40%;
+    height: auto;
+    width: 40%;
+}
+

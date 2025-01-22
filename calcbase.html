@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Base</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="video-background">
+        <video id="backgroundVideo" autoplay muted playsinline>
+            <source id="videoSource" src="ondascolores.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+    </div>
+    
+    
+    <!-- Slider de navegación -->
+    <div class="slider-container">
+        <div class="slider-background">
+            <div class="slider"></div>
+            <div class="slider-buttons">
+                <div class="slider-button" data-index="0">Inicio</div>
+                <div class="slider-button" data-index="1">Calculadora Básica</div>
+                <div class="slider-button" data-index="2">Calculadora de Fórmulas</div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <!-- Contenido principal -->
+    <div class="content2">
+        <h1>Calculadora Base</h1>
+        <p>Realiza cálculos a tu gusto</p>
+
+        <!-- Calculadora -->
+        <div class="calculator2">
+            <!-- Pantalla de la calculadora -->
+            <div class="display" id="display">0</div>
+
+            <!-- Botones de la calculadora -->
+            <div class="buttons">
+                <button onclick="clearDisplay()" class="double">C</button>
+                <button style="grid-column: span 2;" onclick="backspace()">←</button>
+                <button onclick="appendToDisplay('/')">/</button>
+                <button onclick="appendToDisplay('7')">7</button>
+                <button onclick="appendToDisplay('8')">8</button>
+                <button onclick="appendToDisplay('9')">9</button>
+                <button onclick="appendToDisplay('*')">*</button>
+                <button onclick="appendToDisplay('4')">4</button>
+                <button onclick="appendToDisplay('5')">5</button>
+                <button onclick="appendToDisplay('6')">6</button>
+                <button onclick="appendToDisplay('-')">-</button>
+                <button onclick="appendToDisplay('1')">1</button>
+                <button onclick="appendToDisplay('2')">2</button>
+                <button onclick="appendToDisplay('3')">3</button>
+                <button onclick="appendToDisplay('+')">+</button>
+                <button style="grid-column: span 2;" onclick="appendToDisplay('0')" class="double">0</button>
+                <button onclick="appendToDisplay('.')">.</button>
+                <button onclick="appendToDisplay('log10(')" class="operator">log10</button>
+                <button onclick="appendToDisplay('ln(')" class="operator">ln</button>
+                <button onclick="appendToDisplay('sqrt(')" class="operator">√</button>
+                <button onclick="appendToDisplay('sin(')" class="operator">sin</button>
+                <button onclick="appendToDisplay('cos(')" class="operator">cos</button>
+                <button onclick="appendToDisplay('tan(')" class="operator">tan</button>
+                <button onclick="appendToDisplay('exp(')" class="operator">exp</button>
+                <button onclick="appendToDisplay('^')" class="operator">^</button>
+                <button onclick="calculateCustomResult()" class="operator triple">=</button>
+                <button onclick="appendToDisplay('(')" class="operator">(</button>
+                <button onclick="appendToDisplay(')')" class="operator">)</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Inicio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="video-background">
+        <video id="backgroundVideo" autoplay muted playsinline>
+            <source id="videoSource" src="ondascolores.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+    </div>
+    
+    
+    <div class="slider-container">
+        <div class="slider-background">
+            <div class="slider"></div>
+            <div class="slider-buttons">
+                <div class="slider-button" data-index="0">Inicio</div>
+                <div class="slider-button" data-index="1">Calculadora Básica</div>
+                <div class="slider-button" data-index="2">Calculadora de Fórmulas</div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+
+    <div class="content" style="align-items: center;">
+        <img src="logo.png" alt="Logo del Proyecto" class="logo">
+        <div class="info-panel">
+            <div style="text-align: center; padding: 20px; max-width: 800px; margin: 0 auto;">
+                <p>Bienvenido a</p><br>
+                <p><strong>SignalSolver</strong><br>
+                Calculadora de Parámetros de Señales<br><br><br>
+                <p><strong>Introducción</strong><br>
+                    Esta es una herramienta diseñada para simplificar los cálculos esenciales en telecomunicaciones y tecnología de señales. Esta calculadora permite resolver diversas fórmulas relacionadas con la física de señales, como la longitud de onda, frecuencia, relación señal a ruido, y muchos más.<br><br>
+                    Este proyecto fue desarrollado como parte de un proyecto académico de los estudiantes de Ingeniería en Tecnologías de la Información y Comunicación (Ing. TIC) de la Universidad Libre Seccional Cúcuta, y está en una etapa de desarrollo preliminar, con más funcionalidades previstas en el futuro.<br><br>
+                </p>
+            
+                <p><strong>Funcionalidades Clave</strong></p>
+            
+                <ul style="text-align: left; margin: 0 auto;">
+                    <li><strong>Cálculo de Parámetros</strong>
+                        <ul style="text-align: left; margin: 0 auto;">
+                            <li><strong>Longitud de Onda (λ)</strong><br>
+                                Permite calcular la longitud de onda de una señal usando la fórmula: <br>
+                                <code>λ = v / f</code><br>
+                                <strong>v</strong>: Velocidad de la señal (puede ser modificada con unidades personalizables como metros por segundo (m/s), kilómetros por hora (km/h), entre otras).<br>
+                                <strong>f</strong>: Frecuencia de la señal, ajustable en unidades de Hz y sus múltiplos (kHz, MHz, etc.).<br><br>
+                            </li>
+                            <li><strong>Frecuencia (f)</strong><br>
+                                Calcule la frecuencia de una señal utilizando la fórmula:<br>
+                                <code>f = v / λ</code><br>
+                                Permite cambiar entre diferentes unidades de tiempo y distancia (por ejemplo, milisegundos, segundos, metros, kilómetros, etc.).<br><br>
+                            </li>
+                            <li><strong>Ancho de Banda</strong><br>
+                                Esta funcionalidad calcula el ancho de banda de una señal como la diferencia entre la frecuencia máxima (Fmax) y la mínima (Fmin):<br>
+                                <code>B = Fmax - Fmin</code><br>
+                                Los usuarios pueden ingresar las frecuencias correspondientes para obtener el resultado.<br><br>
+                            </li>
+                            <li><strong>Relación Señal a Ruido (SNR)</strong><br>
+                                Esta fórmula permite calcular la relación señal a ruido en términos de <strong>potencia</strong> o <strong>voltaje</strong>:<br>
+                                <code>SNR (dB) = 10 log (Pseñal / Pruido)</code> o <code>SNR (dB) = 20 log (Vseñal / Vruido)</code><br>
+                                Puedes elegir entre usar voltajes o potencias, según lo que se necesite en cada caso.<br><br>
+                            </li>
+                            <li><strong>Presupuesto de Enlace</strong><br>
+                                Permite realizar cálculos relacionados con las pérdidas de señal en un enlace de comunicación, ajustable con un campo adicional para la <strong>Pérdida de cable</strong> y con la opción de añadir más campos si es necesario.<br><br>
+                            </li>
+                            <li><strong>Cálculos de Ruido Térmico y Voltaje de Ruido</strong><br>
+                                Los usuarios pueden calcular el ruido térmico utilizando las fórmulas estándar, permitiendo una evaluación precisa de las condiciones de ruido en los sistemas de comunicación.<br><br>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li><strong>Visualización de Gráficos de Señales</strong><br>
+                        Esta funcionalidad está en <strong>etapa de desarrollo</strong> y permitirá a los usuarios visualizar gráficos de señales, como ondas y espectros, para facilitar el análisis de los parámetros calculados anteriormente. Actualmente se está trabajando en la integración de herramientas gráficas avanzadas para mejorar la visualización de datos de señales.<br><br>
+                    </li>
+                    
+                    <li><strong>Unidades Personalizables</strong><br>
+                        Todos los campos de entrada permiten cambiar las unidades de acuerdo con las necesidades del usuario. Las unidades se pueden ajustar para <strong>frecuencia</strong>, <strong>distancia</strong>, <strong>velocidad</strong>, y <strong>temperatura</strong>, entre otras, garantizando la flexibilidad en los cálculos.<br><br>
+                    </li>
+                </ul>
+            
+                <p><strong>¿Cómo usar la Calculadora?</strong></p>
+            
+                <ul style="text-align: left; margin: 0 auto;">
+                    <li><strong>Selección de Fórmulas</strong><br>
+                        En la barra horizontal superior, puedes ver una sección llamada <strong>Calculadora de fórmulas</strong>. Allí podrás encontrar una lista de varias fórmulas. Al hacer clic en la fórmula deseada, los campos de entrada correspondientes se activarán en la parte inferior de la página. Dependiendo de la fórmula seleccionada, se te pedirán valores como <strong>frecuencia</strong>, <strong>longitud de onda</strong>, <strong>velocidad</strong>, entre otros.<br><br>
+                    </li>
+                    <li><strong>Ingreso de Datos</strong><br>
+                        Una vez que seleccionas una fórmula, los <strong>campos de entrada</strong> aparecerán. Cada campo tendrá un botón de lista desplegable (en caso de que el campo lo amerite) para que elijas la <strong>unidad</strong> correspondiente al dato que estás ingresando. Ejemplo: si estás calculando la longitud de onda, podrás elegir entre unidades de distancia como <strong>metros (m)</strong> o <strong>kilómetros (km)</strong>.<br><br>
+                    </li>
+                    <li><strong>Cálculo y Resultados</strong><br>
+                        Después de ingresar los valores necesarios, haz clic en el botón de <strong>Calcular</strong> para obtener el resultado. La calculadora mostrará el <strong>resultado calculado</strong> en la misma pantalla, y se actualizará en tiempo real.<br><br>
+                    </li>
+                    <li><strong>Ajuste de Unidades</strong><br>
+                        Los campos de entrada también cuentan con menús de unidades para que puedas realizar conversiones entre diferentes sistemas de unidades. Por ejemplo, puedes convertir entre <strong>watts a decibeles (watt a dB)</strong>.<br><br>
+                    </li>
+                </ul>
+            
+                <p><strong>Características Adicionales</strong></p>
+                <ul style="text-align: left; margin: 0 auto;">
+                    <li><strong>Interfaz Intuitiva</strong>: La calculadora cuenta con una interfaz moderna, fácil de usar, que permite a los usuarios hacer los cálculos sin complicaciones.<br><br></li>
+                    <li><strong>Responsive</strong>: La calculadora está optimizada para dispositivos móviles, por lo que podrás utilizarla tanto en tu computador como en tu teléfono móvil o tablet.<br><br></li>
+                    <li><strong>Elementos visuales</strong>: En algunas secciones, podrás disponer de elementos visuales como gráficas de señales. Esto te permitirá analizar y entender de forma visual las señales generadas.<br><br></li>
+                </ul>
+            
+                <p><strong>Contribuciones y Agradecimientos</strong><br>
+                    Este proyecto fue realizado por los estudiantes de Ingeniería en Tecnologías de la Información y Comunicación (Ing. TIC) de la <strong>Universidad Libre Seccional Cúcuta</strong>:<br>
+                    - Cristian Peñaranda García<br>
+                    - Zharick Laguado Gelves<br><br>
+                    Con la colaboración de los estudiantes:<br>
+                    - Duván Bacca Ascanio<br>
+                    - Daniela Dueñas Solano<br>
+                    - Daniel Barbosa Pereira<br>
+                    Bajo la dirección del docente <strong>Jesús Álvarez Guerrero</strong>, quien ha guiado el desarrollo del proyecto.<br><br>
+                </p>
+            
+                <p><strong>Etapa de Desarrollo</strong><br>
+                    Este proyecto se encuentra en su <strong>etapa de desarrollo preliminar</strong>, lo que significa que aún se están agregando nuevas funcionalidades y ajustes para mejorar su rendimiento y características. ¡Esperamos seguir ampliando y mejorando esta herramienta con el tiempo!</p>
+            </div>
+            
+        </div>
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

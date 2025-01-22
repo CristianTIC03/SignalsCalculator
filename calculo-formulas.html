@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Fórmulas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="video-background">
+        <video id="backgroundVideo" autoplay muted playsinline>
+            <source id="videoSource" src="ondascolores.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+    </div>
+    
+    <div class="slider-container">
+        <div class="slider-background">
+            <div class="slider"></div>
+            <div class="slider-buttons">
+                <div class="slider-button" data-index="0">Inicio</div>
+                <div class="slider-button" data-index="1">Calculadora Básica</div>
+                <div class="slider-button" data-index="2">Calculadora de Fórmulas</div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="content">
+        <h1>Calculadora de Fórmulas</h1>
+        <p>Aquí puedes realizar cálculos avanzados con diferentes fórmulas.</p>
+        <div class="row2">
+                <div class="buttons-left">
+                    <button id="wavelengthButton" onclick="showFormula('wavelength')">Longitud de Onda</button>
+                    <button id="frequencyButton" onclick="showFormula('frequency')">Frecuencia</button>
+                    <button id="velocityButton" onclick="showFormula('velocity')">Velocidad</button>
+                    <button id="shannonButton" onclick="showFormula('shannon')">Capacidad de Información</button>
+                </div>
+                <div class="buttons-left">
+                    <button id="snrButton" onclick="showFormula('snr')">Relación S/N (Potencia)</button>
+                    <button id="snrVoltageButton" onclick="showFormula('snrVoltage')">Relación S/N (Voltaje)</button>
+                    <button id="thermalNoiseButton" onclick="showFormula('thermalNoise')">Ruido Térmico</button>
+                    <button id="noiseVoltageButton" onclick="showFormula('noiseVoltage')">Voltaje de Ruido</button>
+                </div>
+                <div class="buttons-left">
+                    <button id="noiseFactorButton" onclick="showFormula('noiseFactor')">Factor de Ruido</button>
+                    <button id="noiseIndexButton" onclick="showFormula('noiseIndex')">Índice de Ruido</button>
+                    <button id="linkBudgetButton" onclick="showFormula('linkBudget')">Presupuesto de Enlace</button>
+                    <button id="berButton" onclick="showFormula('ber')">BER</button>
+                </div>
+                <div class="buttons-left">
+                    <button id="bandwidthButton" onclick="showFormula('bandwidth')">Ancho de Banda</button>
+                    <button id="wattToDbButton" onclick="showFormula('wattToDb')">Watt a dB</button>
+                    <button id="dbToWattButton" onclick="showFormula('dbToWatt')">dB a Watt</button>
+            </div>
+            
+            <div class="calculator"></div>
+            
+            <div class="formula-box" id="formulaBox">
+                <div class="formula">Selecciona una fórmula</div>
+            </div>
+            <div id="inputsContainer" class="inputs-container"></div>
+
+            <div class="inputs-box" id="inputsBox">
+                <div id="inputsContainer"></div>
+                <button class="calc-button" onclick="calculateCustomResult()">Calcular</button>
+            </div>
+
+            <div class="display" id="display">0</div>
+        </div>
+        </div>
+        
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
