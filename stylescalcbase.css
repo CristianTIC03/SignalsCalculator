@@ -1,0 +1,250 @@
+/* Estilo base */
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #222222, #000000);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor de la calculadora */
+.content2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    z-index: 10;
+    position: relative;
+    margin-top: 100px;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para la calculadora */
+.calculator2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columnas: una para números, otra para operaciones */
+    grid-gap: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Pantalla de la calculadora */
+.display {
+    grid-column: span 2;
+    background-color: #222;
+    color: white;
+    text-align: right;
+    padding: 15px;
+    font-size: 2rem;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    height: 50px;
+    overflow-x: auto;
+}
+
+/* Botones de la calculadora */
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columnas: una para los números, otra para las operaciones */
+    grid-gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Botones numéricos */
+.numeric-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas para los números */
+    grid-gap: 10px;
+}
+
+/* Botones de operaciones */
+.operator-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+}
+
+/* Ajustes de los botones */
+button {
+    padding: 20px;
+    font-size: 1.5rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+button:active {
+    background-color: #555;
+}
+
+/* Botón de operación */
+.operator {
+    background-color: #007BFF;
+}
+
+.operator:hover {
+    background-color: #0069d9;
+}
+
+.operator:active {
+    background-color: #0056b3;
+}
+
+/* Botón de igual */
+.triple {
+    grid-column: span 2;
+    background-color: #28a745;
+}
+
+.triple:hover {
+    background-color: #218838;
+}
+
+.triple:active {
+    background-color: #1e7e34;
+}
+
+/* Botón de doble tamaño */
+.double {
+    grid-column: span 2;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px);
+    opacity: 0.8;
+}
+
+/* Media queries para móviles */
+@media (max-width: 768px) {
+    .content2 {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .buttons {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .display {
+        font-size: 1.6rem;
+    }
+
+    button {
+        padding: 15px;
+        font-size: 1.3rem;
+    }
+
+    .operator {
+        font-size: 1.2rem;
+    }
+}
+
+
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+
+.slider-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.slider-background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+}
+
+.slider-buttons {
+    padding-top: 0.8%;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-button {
+    flex: 1;
+    color: #acacac;
+    font-size: 1em;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.slider-button:hover {
+    color: #ddd;
+}
+
+.slider-button.active {
+    color: #ffffff;
+}
+

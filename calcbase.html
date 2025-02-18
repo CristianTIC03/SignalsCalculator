@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Base</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="stylescalcbase.css">
 </head>
 
 <body>
@@ -42,7 +42,9 @@
             <div class="display" id="display">0</div>
 
             <!-- Botones de la calculadora -->
-            <div class="buttons">
+        <div class="buttons">
+            <!-- Botones numéricos -->
+            <div class="numeric-buttons">
                 <button onclick="clearDisplay()" class="double">C</button>
                 <button style="grid-column: span 2;" onclick="backspace()">←</button>
                 <button onclick="appendToDisplay('/')">/</button>
@@ -60,6 +62,10 @@
                 <button onclick="appendToDisplay('+')">+</button>
                 <button style="grid-column: span 2;" onclick="appendToDisplay('0')" class="double">0</button>
                 <button onclick="appendToDisplay('.')">.</button>
+            </div>
+
+            <!-- Botones de operaciones -->
+            <div class="operator-buttons">
                 <button onclick="appendToDisplay('log10(')" class="operator">log10</button>
                 <button onclick="appendToDisplay('ln(')" class="operator">ln</button>
                 <button onclick="appendToDisplay('sqrt(')" class="operator">√</button>
@@ -68,10 +74,13 @@
                 <button onclick="appendToDisplay('tan(')" class="operator">tan</button>
                 <button onclick="appendToDisplay('exp(')" class="operator">exp</button>
                 <button onclick="appendToDisplay('^')" class="operator">^</button>
-                <button onclick="calculateCustomResult()" class="operator triple">=</button>
+                <!-- Botón de igual -->
+                <button onclick="calculateResult()" class="operator triple">=</button>
                 <button onclick="appendToDisplay('(')" class="operator">(</button>
                 <button onclick="appendToDisplay(')')" class="operator">)</button>
             </div>
+        </div>
+
         </div>
     </div>
 
