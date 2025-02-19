@@ -1,3 +1,72 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const sliderButtons = document.querySelectorAll(".slider-button");
+    const pages = {
+        Inicio: "index.html",
+        "Calculadora Básica": "calcbase.html",
+        "Calculadora de Fórmulas": "calculo-formulas.html",
+    };
+
+    // Obtener el índice activo o establecerlo en 0 (Inicio)
+    let activeIndex = localStorage.getItem("activeIndex");
+    if (activeIndex === null) {
+        activeIndex = 0;  // Si no hay un índice guardado, inicia en Inicio
+    } else {
+        activeIndex = parseInt(activeIndex);
+    }
+
+    // Marcar el botón activo
+    sliderButtons.forEach((btn, i) => {
+        if (i === activeIndex) {
+            btn.classList.add("active");
+        } else {
+            btn.classList.remove("active");
+        }
+    });
+
+    // Evento de clic en los botones de navegación
+    sliderButtons.forEach((button, index) => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault(); // Evita el comportamiento por defecto
+            setActiveIndex(index);
+            changePage(index);  // Llamar a la función que cambia de página
+        });
+    });
+
+    // Establecer el índice activo en localStorage y resaltar botón
+    function setActiveIndex(index) {
+        localStorage.setItem("activeIndex", index);
+        sliderButtons.forEach((btn, i) => {
+            if (i === index) {
+                btn.classList.add("active");
+            } else {
+                btn.classList.remove("active");
+            }
+        });
+    }
+
+    // Función para cambiar de página
+    function changePage(index) {
+        const pageNames = Object.keys(pages);
+        const pageURL = pages[pageNames[index]];
+        if (pageURL) {
+            window.location.href = pageURL;
+        }
+    }
+});
+
+// Función para calcular el resultado
+function calculateResult() {
+    try {
+        let result = eval(currentInput); // Evalúa la expresión matemática
+        display.textContent = result;
+        currentInput = result.toString(); // Guarda el resultado para continuar operando
+    } catch (error) {
+        display.textContent = "Error"; // Muestra "Error" si la expresión no es válida
+        currentInput = "";
+    }
+}
+
+
 // Variables globales (PARA CALCULADORA BASE) 
 let display = document.getElementById("display");
 let currentInput = "";  // Aquí almacenamos la operación actual

@@ -32,40 +32,54 @@ document.addEventListener("DOMContentLoaded", () => {
         "Calculadora de Fórmulas": "calculo-formulas.html",
     };
 
-    let activeIndex = parseInt(localStorage.getItem("activeIndex")) || 0;
+    // Obtener el índice activo o establecerlo en 0 (Inicio)
+    let activeIndex = localStorage.getItem("activeIndex");
+    if (activeIndex === null) {
+        activeIndex = 0;  // Si no hay un índice guardado, inicia en Inicio
+    } else {
+        activeIndex = parseInt(activeIndex);
+    }
 
-        // Marcar el botón activo
+    // Marcar el botón activo
+    sliderButtons.forEach((btn, i) => {
+        if (i === activeIndex) {
+            btn.classList.add("active");
+        } else {
+            btn.classList.remove("active");
+        }
+    });
+
+    // Evento de clic en los botones de navegación
+    sliderButtons.forEach((button, index) => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault(); // Evita el comportamiento por defecto
+            setActiveIndex(index);
+            changePage(index);  // Llamar a la función que cambia de página
+        });
+    });
+
+    // Establecer el índice activo en localStorage y resaltar botón
+    function setActiveIndex(index) {
+        localStorage.setItem("activeIndex", index);
         sliderButtons.forEach((btn, i) => {
-            if (i === activeIndex) {
+            if (i === index) {
                 btn.classList.add("active");
             } else {
                 btn.classList.remove("active");
             }
         });
+    }
 
-        // Resaltar la sección correspondiente (en caso de que tengas elementos para mostrar en la página)
-        const sections = document.querySelectorAll(".section");
-        sections.forEach((section, i) => {
-            if (i === activeIndex) {
-                section.classList.add("highlight");
-            } else {
-                section.classList.remove("highlight");
-            }
-        });
-    
-
-    // Añadir el evento de clic a los botones
-    sliderButtons.forEach((button, index) => {
-        button.addEventListener("click", (e) => {
-            e.preventDefault(); // Prevenir el comportamiento por defecto (evitar el refresco inmediato)
-            setActiveIndex(index);
-            changePage(); // Llamar a la función para cambiar de página con retraso
-        });
-    });
-
-    // Inicializar la posición del índice activo
-    setActiveIndex(activeIndex);
+    // Función para cambiar de página
+    function changePage(index) {
+        const pageNames = Object.keys(pages);
+        const pageURL = pages[pageNames[index]];
+        if (pageURL) {
+            window.location.href = pageURL;
+        }
+    }
 });
+
 
 
 
