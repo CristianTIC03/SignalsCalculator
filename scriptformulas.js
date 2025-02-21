@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", () => {
     const sliderButtons = document.querySelectorAll(".slider-button");
     const pages = {
-        Inicio: "index.html",
         "Calculadora Básica": "calcbase.html",
+        Inicio: "index.html",
         "Calculadora de Fórmulas": "calculo-formulas.html",
     };
 
@@ -80,7 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
+//FUNCIÓN PARA LLEVAR AL USUARIO AL CAMPO DE INGRESO DE DATOS AL SELECCIONAR UNA FÓRMULAS
+function scrollToTarget() {
+    const target = document.getElementById("scrollTarget");
+    target.scrollIntoView({ behavior: 'smooth' });
+}
 
 
 

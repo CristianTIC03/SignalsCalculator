@@ -151,21 +151,9 @@ button:active {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(3px);
-    opacity: 0.7; /* Puedes ajustar este valor */
+    opacity: 0.2; /* Ajusta este valor para cambiar la transparencia */
+    filter: brightness(0.8); /* Reduce el brillo para disimular el fondo */
 }
-
-/* Capa blanca semitransparente para aclarar */
-.video-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.3); /* Blanco con 30% de opacidad */
-    z-index: 0;
-}
-
 
 /* Media queries para móviles */
 @media (max-width: 768px) {
@@ -211,18 +199,23 @@ p {
     margin-bottom: 20px;
 }
 
-
+/* Slider de navegación */
 .slider-container {
     position: fixed;
-    top: 20px;
+    top: 4%;
     left: 50%;
     transform: translateX(-50%);
-    width: 70%;
+    width: 85%;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    border: 1px solid #555;  /* Borde claro y sutil */
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
 }
 
 .slider-background {
@@ -236,10 +229,11 @@ p {
 }
 
 .slider-buttons {
-    padding-top: 0.8%;
     display: flex;
     width: 100%;
     height: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .slider-button {
@@ -260,4 +254,3 @@ p {
 .slider-button.active {
     color: #ffffff;
 }
-

@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const sliderButtons = document.querySelectorAll(".slider-button");
     const pages = {
-        Inicio: "index.html",
         "Calculadora Básica": "calcbase.html",
+        Inicio: "index.html",
         "Calculadora de Fórmulas": "calculo-formulas.html",
     };
 
@@ -53,6 +53,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const videoSources = ["ondascolores.mp4", "panalantenas.mp4", "frecuencia.mp4", "frec2.mp4"];
+    let currentVideoIndex = 0;
+    const backgroundVideo = document.getElementById("backgroundVideo");
+    const videoSource = document.getElementById("videoSource");
+
+    function changeVideoSource() {
+        // Cambiar al siguiente video
+        currentVideoIndex = (currentVideoIndex + 1) % videoSources.length;
+        videoSource.src = videoSources[currentVideoIndex];
+        // Recargar y reproducir el video
+        backgroundVideo.load();
+        backgroundVideo.play();
+    }
+
+    // Detectar cuando el video actual termina
+    backgroundVideo.addEventListener("ended", changeVideoSource);
+});
+
 
 // Función para calcular el resultado
 function calculateResult() {
