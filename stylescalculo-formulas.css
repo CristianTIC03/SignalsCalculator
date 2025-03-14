@@ -95,13 +95,102 @@ button:active {
     font-size: 1.4rem;
 }
 
-/* Contenedor de inputs */
-.inputs-container {
-    margin-top: 20px;
+/* Contenedor para los inputs y dropdowns */
+.unit-container {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    align-items: center; /* Alinea verticalmente los elementos */
+    gap: 15px; /* Espacio entre el input y el dropdown */
+    margin-bottom: 2%;
 }
+
+/* Estilo de los inputs */
+.inputs-container input,
+.unit-container input {
+    background-color: #161616; /* Fondo oscuro */
+    color: white;               /* Texto blanco */
+    font-size: 1.2rem;          /* Tamaño de fuente */
+    padding: 12px;              /* Espaciado interior */
+    border: 1px solid #555;     /* Borde sutil */
+    border-radius: 10px;        /* Bordes redondeados */
+    width: 250px;               /* Tamaño fijo para el input */
+    box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.1); /* Sombra interior */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Efectos de transición */
+}
+
+/* Efecto hover en los inputs */
+.inputs-container input:hover,
+.unit-container input:hover {
+    background-color: #1e1e1e;  /* Fondo más oscuro */
+    box-shadow: inset 0 6px 12px rgba(255, 255, 255, 0.2);  /* Sombra más intensa */
+}
+
+/* Efecto focus en los inputs */
+.inputs-container input:focus,
+.unit-container input:focus {
+    background-color: #1e1e1e;  /* Fondo más oscuro al hacer foco */
+    outline: none;              /* Elimina el borde predeterminado */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.8); /* Sombra azul al hacer foco */
+}
+
+/* Estilo de los botones de unidades (si los tienes) */
+.input-unit-button {
+    background-color: #161616;  /* Fondo oscuro */
+    color: white;               /* Texto blanco */
+    font-size: 1rem;            /* Tamaño de fuente */
+    padding: 10px 20px;         /* Espaciado interior */
+    border: 1px solid #555;     /* Borde sutil */
+    border-radius: 10px;        /* Bordes redondeados */
+    cursor: pointer;           /* Apunta como cursor */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Efectos de transición */
+}
+
+/* Efecto hover en los botones de unidades */
+.input-unit-button:hover {
+    background-color: #1e1e1e;  /* Fondo más oscuro */
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);  /* Sombra más intensa */
+}
+
+/* Estilo para los dropdowns (menús desplegables) */
+.unit-dropdown {
+    background-color: #161616;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    padding: 12px;
+    width: 150px; /* Tamaño ajustado para el dropdown */
+    cursor: pointer;
+    box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 2%;
+}
+
+/* Hover sobre el dropdown */
+.unit-dropdown:hover {
+    background-color: #1e1e1e;
+    border-color: #007BFF;
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2);
+}
+
+/* Foco sobre el dropdown */
+.unit-dropdown:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Estilo para las opciones dentro del dropdown */
+.unit-dropdown option {
+    background-color: #161616;
+    color: white;
+    padding: 10px;
+}
+
+/* Estilo para las opciones al pasar el cursor sobre ellas */
+.unit-dropdown option:hover {
+    background-color: #333333;
+}
+
 
 .inputs-box {
     display: flex;
@@ -139,10 +228,7 @@ button:active {
     margin-top: 20px;
 }
 
-/* Contenedor de gráficos */
-.graph-container {
-    margin-top: 40px;
-}
+
 
 canvas {
     width: 100%;
@@ -206,7 +292,8 @@ canvas {
     color: #ffffff;
 }
 
-/*Estilos de la gráfica de señal*/
+/* Contenedor de gráficos */
+/* Contenedor de gráficos */
 .graph-container {
     display: none; /* Oculto inicialmente */
     background-color: rgba(255, 255, 255, 0.753); /* Blanco con 60% de opacidad */
@@ -215,14 +302,19 @@ canvas {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra */
     justify-content: center;
     align-items: center;
-    margin: 20px auto; /* Centrado automático */
-    width: 80%;
-    max-width: 600px;
+    margin: auto; /* Centrado automático */
+    width: 120%;         /* Cambiado de 80% a 120% */
+    max-width: 120vw;    /* Cambiado de 600px a 1000px */
     text-align: center;
+    position: relative;  /* Agregado */
+    left: 50%;           /* Agregado */
+    transform: translateX(-50%); /* Agregado para centrar */
 }
+
+
 #waveCanvas {
     width: 100%;
-    height: 300px;
+    height: 100%;    /* Cambiado de 300px a 500px */
 }
 
 

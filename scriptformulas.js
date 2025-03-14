@@ -605,17 +605,28 @@ function plotSineWave(result) {
     }
 
     // Datos de la onda senoidal
-    const dataPoints = 100;
+    const dataPoints = 20;  // Número de puntos en la gráfica (más puntos para suavizar la curva)
     const xValues = [];
     const yValues = [];
-    const amplitude = 1;
 
-    for (let i = 0; i < dataPoints; i++) {
-        let x = (i / dataPoints) * (4 * Math.PI);
-        let y = amplitude * Math.sin((2 * Math.PI / result) * x);
+    // Asegurarse de que el periodo sea válido
+    const period = result > 0 ? result : 1; // Tomamos el valor de la frecuencia o el valor dado
+    const amplitude = 1; // La amplitud no la modificamos
+
+    // Mostrar solo un ciclo completo, un período (2π)
+    const xMax = 4 * Math.PI;  // Un solo ciclo completo (0 a 2π)
+
+    // Crear los puntos para la gráfica (solo un período completo)
+    for (let i = 0; i <= dataPoints; i++) {  // Asegurarse de incluir el último valor
+        let x = (i / dataPoints) * xMax;
+        let y = amplitude * Math.sin(x);
         xValues.push(x);
         yValues.push(y);
     }
+
+    // Calcular los límites dinámicos del eje Y
+    const yMin = Math.min(...yValues) - 0.2;
+    const yMax = Math.max(...yValues) + 0.2;
 
     // Crear gráfica con Chart.js
     window.sineChart = new Chart(ctx, {
@@ -632,9 +643,34 @@ function plotSineWave(result) {
             }]
         },
         options: {
+            responsive: true,
             scales: {
-                x: { display: false },
-                y: { suggestedMin: -1.5, suggestedMax: 1.5 }
+                x: {
+                    title: {
+                        display: true,
+                        text: "Tiempo (s)",
+                        color: "white"
+                    },
+                    ticks: {
+                        color: "white",
+                        // Formatear los ticks del eje X a 2 decimales
+                        callback: function(value) {
+                            return value.toFixed(2); // Redondea el valor a 2 decimales
+                        }
+                    }
+                },
+                y: {
+                    suggestedMin: yMin,
+                    suggestedMax: yMax,
+                    title: {
+                        display: true,
+                        text: "Amplitud",
+                        color: "white"
+                    },
+                    ticks: {
+                        color: "white"
+                    }
+                }
             },
             plugins: {
                 legend: {
@@ -645,7 +681,24 @@ function plotSineWave(result) {
             }
         }
     });
+
+    // Dibujar una línea vertical al final del periodo (en x = 2π)
+    const xEnd = Math.PI * 2;  // Fin del periodo completo, en 2π
+    const yStart = -1.5;        // Límite inferior del eje Y
+    const yEnd = 1.5;           // Límite superior del eje Y
+
+    ctx.beginPath();
+    ctx.moveTo(xEnd * (canvasContainer.offsetWidth / xMax), yStart); // Convierte a las coordenadas del lienzo
+    ctx.lineTo(xEnd * (canvasContainer.offsetWidth / xMax), yEnd);
+    ctx.strokeStyle = "red"; // Color de la línea
+    ctx.lineWidth = 2;
+    ctx.stroke();
 }
+
+
+
+
+
 
 
 
@@ -656,19 +709,37 @@ function calculateCustomResult() {
 
     // Longitud de onda
     if (formula.includes("λ(m) = V / f")) {
-        const velocity =convertUnit(parseFloat(document.getElementById("velocityInput").value), document.getElementById("velocityInput").nextElementSibling.value);
-        const frequency = convertUnit(parseFloat(document.getElementById("frequencyInput").value), document.getElementById("frequencyInput").nextElementSibling.value);
-
+        const velocity = convertUnit(parseFloat(document.getElementById("velocityInput").value), 
+                                     document.getElementById("velocityInput").nextElementSibling.value);
+        const frequency = convertUnit(parseFloat(document.getElementById("frequencyInput").value), 
+                                      document.getElementById("frequencyInput").nextElementSibling.value);
+    
         if (frequency === 0) {
             displayResult("Error: Frecuencia no puede ser cero");
             return;
         }
-
-        result = (velocity / frequency);
+    
+        let result = velocity / frequency;
+        let resultText;
+    
+        if (Math.abs(result) >= 1e6 || Math.abs(result) < 1e-3) {
+            // Notación científica con 2 decimales si es demasiado grande o pequeño
+            resultText = result.toExponential(2).replace("e", " × 10^");
+        } else if (Math.abs(result) < 1 && Math.abs(result) >= 1e-3) {
+            // Para valores menores a 1 pero mayores o iguales a 0.001, se muestra con hasta 6 decimales
+            resultText = result.toFixed(6).replace(/\.?0+$/, ""); // Elimina ceros innecesarios al final
+        } else {
+            // Valores normales con 2 decimales
+            resultText = result.toFixed(2);
+        }
+    
         // Llamar a la función para generar la gráfica
         plotSineWave(result);
-        document.getElementById('display').textContent = `λ = ${result.toFixed(2)} m`;
+    
+        // Mostrar resultado en pantalla
+        document.getElementById('display').textContent = `λ = ${resultText} m`;
     }
+    
 
     // Frecuencia
     else if (formula.includes("f(Hz) = V / λ")) {
