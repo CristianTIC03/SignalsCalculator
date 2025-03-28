@@ -363,14 +363,15 @@ function showFormula(formula) {
                     `;
                     break;
                 
+                // Modificación en la creación de inputs
                 case 'ber':
                     formulaBox.innerHTML = `
-                        <p class="description">La tasa de error de bit (BER) se calcula como el número de errores sobre el total de bits transmitidos.</p>
+                        <p class="description">La tasa de error de bit (BER) se calcula comparando la secuencia de bits transmitida con la recibida.</p>
                         <h2>BER = (Ne / Nt)</h2>
                     `;
                     inputsContainer.innerHTML = `
-                        ${createInputField('numErrors', 'Errores (Ne)', '')}
-                        ${createInputField('numTotal', 'Total de Bits (Nt)', '')}
+                        ${createInputField('numErrors', 'Bits transmitidos', '')}
+                        ${createInputField('numTotal', 'Bits recibidos', '')}
                     `;
                     break;
                 case 'bandwidth':
@@ -709,8 +710,7 @@ function calculateCustomResult() {
 
     // Longitud de onda
     if (formula.includes("λ(m) = V / f")) {
-        const velocity = convertUnit(parseFloat(document.getElementById("velocityInput").value), 
-                                     document.getElementById("velocityInput").nextElementSibling.value);
+        const velocity = convertUnit(parseFloat(document.getElementById("velocityInput").value), document.getElementById("velocityInput").nextElementSibling.value);
         const frequency = convertUnit(parseFloat(document.getElementById("frequencyInput").value), 
                                       document.getElementById("frequencyInput").nextElementSibling.value);
     
@@ -765,15 +765,68 @@ function calculateCustomResult() {
     }
 
     // Shannon
-    else if (formula.includes('C(bits/s) = B log2(1 + S/N)')) {
-        const bandwidthUnit = document.querySelector('#bandwidthInput + .unit-dropdown').value;
-        const bandwidth = convertUnit(parseInput(document.getElementById('bandwidthInput').value), bandwidthUnit);
-        const signal = parseInput(document.getElementById('signalInput').value);
-        const noise = parseInput(document.getElementById('noiseInput').value);
-        result = bandwidth * Math.log2(1 + (signal / noise)); // No se requiere dividir por 100
-        result=result.toFixed(2);
-        displayResult(result);
+else if (formula.includes('C(bits/s) = B log2(1 + S/N)')) {
+    const bandwidthInput = parseFloat(document.getElementById("bandwidthInput").value);
+    const bandwidthUnit = document.getElementById("bandwidthInput").nextElementSibling.value;
+    const signalInput = parseFloat(document.getElementById("signalInput").value);
+    const signalUnit = document.getElementById("signalInput").nextElementSibling.value;
+    const noiseInput = parseFloat(document.getElementById("noiseInput").value);
+    const noiseUnit = document.getElementById("noiseInput").nextElementSibling.value;
+
+    // Convertir ancho de banda a unidad base (Hz)
+    const bandwidth = convertUnit(bandwidthInput, bandwidthUnit);
+
+    // Función para convertir unidades de potencia a W
+    function convertPower(value, unit) {
+        if (unit === "dBm") {
+            return Math.pow(10, value / 10) / 1000; // dBm a W
+        } else if (unit === "mW") {
+            return value / 1000; // mW a W
+        } else {
+            return value; // W se mantiene igual
+        }
     }
+
+    // Convertir señal y ruido a W
+    const signal = convertPower(signalInput, signalUnit);
+    const noise = convertPower(noiseInput, noiseUnit);
+
+    // Depuración de valores
+    console.log("Valores ingresados:");
+    console.log("Bandwidth (antes de conversión):", bandwidthInput, "Unidad:", bandwidthUnit);
+    console.log("Bandwidth (convertido):", bandwidth);
+    console.log("Signal (convertido a W):", signal, "Noise (convertido a W):", noise);
+
+    // Validaciones
+    if (isNaN(bandwidth) || isNaN(signal) || isNaN(noise)) {
+        displayResult("Error: Ingrese valores numéricos válidos.");
+        return;
+    }
+
+    if (bandwidth <= 0) {
+        displayResult("Error: B debe ser mayor a 0.");
+        return;
+    }
+
+    if (noise <= 0) {
+        displayResult("Error: N en escala lineal debe ser mayor a 0.");
+        return;
+    }
+
+    // Calcular capacidad de canal
+    const snr = signal / noise;
+    console.log("SNR calculado:", snr);
+    const result = bandwidth * Math.log2(1 + snr);
+    console.log("Resultado final:", result);
+
+    displayResult(result);
+}
+
+    
+    
+    
+    
+    
 
     // Relación señal a ruido
     else if (formula.includes('S/N(dB) = 10 log10(Ps / Pn)')) {
@@ -885,23 +938,31 @@ function calculateCustomResult() {
 
     // BER
     else if (formula.includes('BER = (Ne / Nt)')) {
-        const numErrors = parseFloat(document.getElementById('numErrors').value);
-        const numTotal = parseFloat(document.getElementById('numTotal').value);
+        const inputBits = document.getElementById('numErrors').value.trim();
+        const outputBits = document.getElementById('numTotal').value.trim();
 
-        // Validación de entradas
-        if (isNaN(numErrors) || isNaN(numTotal)) {
-            alert("Por favor ingrese valores válidos para los errores y el total de bits.");
-            return; // Salir si hay un valor no válido
+        // Validaciones
+        if (inputBits.length === 0 || outputBits.length === 0) {
+            alert("Por favor ingrese valores en ambos campos.");
+            return;
+        }
+        
+        if (inputBits.length !== outputBits.length) {
+            alert("Las cadenas de bits deben tener la misma longitud.");
+            return;
         }
 
-        if (numTotal === 0) {
-            alert("El total de bits (Nt) no puede ser cero.");
-            return; // Salir si el total es cero
+        // Contar errores comparando bit a bit
+        let errorCount = 0;
+        for (let i = 0; i < inputBits.length; i++) {
+            if (inputBits[i] !== outputBits[i]) {
+                errorCount++;
+            }
         }
 
-        // Cálculo del BER
-        result = numErrors / numTotal;
-        result = result.toExponential(2);
+        // Calcular BER
+        const totalBits = inputBits.length;
+        result = errorCount / totalBits;
 
         displayResult(result);
     }
