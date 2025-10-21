@@ -27,30 +27,39 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.2; /* Ajusta este valor para cambiar la transparencia */
-    filter: brightness(0.8); /* Reduce el brillo para disimular el fondo */
+    opacity: 0.2;
+    filter: brightness(0.8);
 }
 
 /* Contenedor principal */
 .content {
     text-align: center;
     width: 100%;
-    max-width: 900px;
+    max-width: 1200px;
     padding: 20px;
     z-index: 10;
     position: relative;
     margin-top: 100px;
+    box-sizing: border-box;
 }
 
 /* Títulos */
 h1 {
     font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+h3 {
+    font-size: 1.5rem;
     margin-bottom: 20px;
+    color: #cccccc;
 }
 
 p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 30px;
+    color: #aaaaaa;
 }
 
 /* Contenedor de botones */
@@ -61,137 +70,157 @@ p {
     margin-bottom: 30px;
 }
 
-/* Estilo de los botones */
-button {
-    margin-bottom: 3%;
-    padding: 15px;
-    font-size: 1.2rem;
-    background-color: #161616;
-    color: white;
-    border: 1px solid #555;  /* Borde claro y sutil */
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    width: 100%;
-    box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.1); /* Sombra suave */
-}
-
-button:hover {
-    background-color: #1e1e1e;
-    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2); /* Sombra más intensa en hover */
-}
-
-button:active {
-    background-color: #eb1414;
-}
-
-/* Caja de la fórmula */
-.formula-box {
-    background-color: #5e5e5e00;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    color: white;
-    font-size: 1.4rem;
-}
-
-/* Contenedor para los inputs y dropdowns */
-.unit-container {
+.buttons-left {
     display: flex;
-    align-items: center; /* Alinea verticalmente los elementos */
-    gap: 15px; /* Espacio entre el input y el dropdown */
-    margin-bottom: 2%;
+    flex-direction: column;
+    gap: 10px;
 }
 
-/* Estilo de los inputs */
-.inputs-container input,
-.unit-container input {
-    background-color: #161616; /* Fondo oscuro */
-    color: white;               /* Texto blanco */
-    font-size: 1.2rem;          /* Tamaño de fuente */
-    padding: 12px;              /* Espaciado interior */
-    border: 1px solid #555;     /* Borde sutil */
-    border-radius: 10px;        /* Bordes redondeados */
-    width: 250px;               /* Tamaño fijo para el input */
-    box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.1); /* Sombra interior */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Efectos de transición */
-}
-
-/* Efecto hover en los inputs */
-.inputs-container input:hover,
-.unit-container input:hover {
-    background-color: #1e1e1e;  /* Fondo más oscuro */
-    box-shadow: inset 0 6px 12px rgba(255, 255, 255, 0.2);  /* Sombra más intensa */
-}
-
-/* Efecto focus en los inputs */
-.inputs-container input:focus,
-.unit-container input:focus {
-    background-color: #1e1e1e;  /* Fondo más oscuro al hacer foco */
-    outline: none;              /* Elimina el borde predeterminado */
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.8); /* Sombra azul al hacer foco */
-}
-
-/* Estilo de los botones de unidades (si los tienes) */
-.input-unit-button {
-    background-color: #161616;  /* Fondo oscuro */
-    color: white;               /* Texto blanco */
-    font-size: 1rem;            /* Tamaño de fuente */
-    padding: 10px 20px;         /* Espaciado interior */
-    border: 1px solid #555;     /* Borde sutil */
-    border-radius: 10px;        /* Bordes redondeados */
-    cursor: pointer;           /* Apunta como cursor */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Efectos de transición */
-}
-
-/* Efecto hover en los botones de unidades */
-.input-unit-button:hover {
-    background-color: #1e1e1e;  /* Fondo más oscuro */
-    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);  /* Sombra más intensa */
-}
-
-/* Estilo para los dropdowns (menús desplegables) */
-.unit-dropdown {
+/* Estilo de los botones de fórmulas */
+button {
+    padding: 15px;
+    font-size: 1rem;
     background-color: #161616;
     color: white;
     border: 1px solid #555;
     border-radius: 10px;
-    font-size: 1.2rem;
-    padding: 12px;
-    width: 150px; /* Tamaño ajustado para el dropdown */
     cursor: pointer;
-    box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.1);
-    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 2%;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
 }
 
-/* Hover sobre el dropdown */
-.unit-dropdown:hover {
-    background-color: #1e1e1e;
+button:hover {
+    background-color: #2a2a2a;
     border-color: #007BFF;
-    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2);
+    transform: translateY(-2px);
 }
 
-/* Foco sobre el dropdown */
+button.active {
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    border-color: #007BFF;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Caja de la fórmula */
+.formula-box {
+    background-color: rgba(30, 30, 30, 0.9);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    color: white;
+    border: 1px solid #444;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.formula-box h2 {
+    color: #007BFF;
+    margin: 15px 0;
+    font-size: 1.8rem;
+}
+
+.formula-box .description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Contenedor de inputs */
+.inputs-container {
+    margin: 20px 0;
+}
+
+/* Estilos para los grupos de entrada */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.input-group input {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    padding: 12px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Estilo para los dropdowns */
+.unit-dropdown {
+    padding: 12px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    min-width: 120px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
 .unit-dropdown:focus {
     outline: none;
     border-color: #007BFF;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Estilo para las opciones dentro del dropdown */
 .unit-dropdown option {
     background-color: #161616;
     color: white;
     padding: 10px;
 }
 
-/* Estilo para las opciones al pasar el cursor sobre ellas */
-.unit-dropdown option:hover {
-    background-color: #333333;
+/* Botones de cable */
+.remove-cable {
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
+.remove-cable:hover {
+    background: #c82333;
+}
 
+.add-cable-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: background 0.3s ease;
+    font-size: 1rem;
+}
+
+.add-cable-button:hover {
+    background: #218838;
+}
+
+/* Botón de calcular */
 .inputs-box {
     display: flex;
     justify-content: center;
@@ -199,67 +228,91 @@ button:active {
 }
 
 .calc-button {
-    padding: 15px 30px;
+    margin: 20px 0;
+    padding: 15px 40px;
     font-size: 1.2rem;
-    background-color: #007BFF;
+    background: linear-gradient(135deg, #007BFF, #0056b3);
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
 }
 
 .calc-button:hover {
-    background-color: #0069d9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+    background: linear-gradient(135deg, #0056b3, #004494);
 }
 
 .calc-button:active {
-    background-color: #0056b3;
+    transform: translateY(0);
 }
 
-/* Display de la calculadora */
+/* Display de resultados */
 .display {
-    background-color: #222;
-    color: white;
-    font-size: 2rem;
+    background: rgba(34, 34, 34, 0.9);
+    color: #28a745;
+    font-size: 1.8rem;
+    font-weight: bold;
     padding: 20px;
     width: 95%;
     border-radius: 10px;
-    margin-top: 20px;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #28a745;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);
+    box-sizing: border-box;
 }
 
+/* Contenedor de gráficos */
+.graph-container {
+    display: none;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 25px auto;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border: 2px solid #007BFF;
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
 
-
-canvas {
-    width: 100%;
-    height: 300px;
+.graph-container canvas {
+    width: 100% !important;
+    height: 300px !important;
     border-radius: 10px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: block;
 }
 
 /* Slider de navegación */
 .slider-container {
     position: fixed;
-    top: 4%;
+    top: 2%;
     left: 50%;
     transform: translateX(-50%);
-    width: 85%;
+    width: 90%;
+    max-width: 800px;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    border: 1px solid #555;  /* Borde claro y sutil */
+    border: 1px solid #555;
     border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    background-color: #161616;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .slider-background {
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: #161616;
     border-radius: 30px;
     overflow: hidden;
     display: flex;
@@ -276,82 +329,371 @@ canvas {
 .slider-button {
     flex: 1;
     color: #acacac;
-    font-size: 1em;
-    padding: 10px;
+    font-size: 0.9em;
+    padding: 10px 5px;
     text-align: center;
     cursor: pointer;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    margin: 0 2px;
 }
 
 .slider-button:hover {
     color: #ddd;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .slider-button.active {
     color: #ffffff;
+    background: linear-gradient(135deg, #007BFF, #0056b3);
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
 }
 
-/* Contenedor de gráficos */
-/* Contenedor de gráficos */
-.graph-container {
-    display: none; /* Oculto inicialmente */
-    background-color: rgba(255, 255, 255, 0.753); /* Blanco con 60% de opacidad */
-    padding: 20px;
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra */
-    justify-content: center;
-    align-items: center;
-    margin: auto; /* Centrado automático */
-    width: 120%;         /* Cambiado de 80% a 120% */
-    max-width: 120vw;    /* Cambiado de 600px a 1000px */
-    text-align: center;
-    position: relative;  /* Agregado */
-    left: 50%;           /* Agregado */
-    transform: translateX(-50%); /* Agregado para centrar */
-}
+/* ============================ */
+/* MEDIA QUERIES RESPONSIVE */
+/* ============================ */
 
-
-#waveCanvas {
-    width: 100%;
-    height: 100%;    /* Cambiado de 300px a 500px */
-}
-
-
-
-/* Media queries para móviles */
-@media (max-width: 768px) {
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+    .content {
+        max-width: 95%;
+        margin-top: 90px;
+        padding: 15px;
+    }
+    
+    .slider-container {
+        width: 95%;
+        top: 1%;
+    }
+    
     .row2 {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
+    
+    h1 {
+        font-size: 2.2rem;
+    }
+    
+    .formula-box {
+        padding: 20px;
+    }
+    
+    .formula-box h2 {
+        font-size: 1.6rem;
+    }
+}
 
+/* Tablets pequeñas */
+@media (max-width: 768px) {
+    .content {
+        margin-top: 80px;
+    }
+    
+    .slider-container {
+        height: 55px;
+    }
+    
+    .slider-button {
+        font-size: 0.8em;
+        padding: 8px 4px;
+    }
+    
+    .row2 {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
     h1 {
         font-size: 2rem;
+        margin-bottom: 8px;
     }
-
+    
+    h3 {
+        font-size: 1.3rem;
+    }
+    
     p {
         font-size: 1rem;
+        margin-bottom: 20px;
     }
-
-    button {
-        padding: 12px;
-        font-size: 1rem;
-    }
-
+    
     .formula-box {
-        font-size: 1.2rem;
+        padding: 15px;
+        margin-bottom: 20px;
     }
-
-    .calc-button {
-        padding: 12px 25px;
+    
+    .formula-box h2 {
+        font-size: 1.4rem;
+    }
+    
+    .formula-box .description {
         font-size: 1rem;
     }
-
+    
+    .input-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    
+    .input-group input {
+        min-width: 100%;
+        max-width: 100%;
+    }
+    
+    .unit-dropdown {
+        min-width: 100%;
+        text-align: center;
+    }
+    
+    .calc-button {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+        margin: 15px 0;
+    }
+    
     .display {
         font-size: 1.5rem;
+        padding: 15px;
+        margin: 15px auto;
     }
-
+    
+    .graph-container {
+        width: 95%;
+        padding: 15px;
+        margin: 20px auto;
+    }
+    
     .graph-container canvas {
-        height: 200px;
+        height: 250px !important;
+    }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+    body {
+        min-height: 100vh;
+        align-items: flex-start;
+    }
+    
+    .content {
+        margin-top: 70px;
+        padding: 10px;
+    }
+    
+    .slider-container {
+        height: 50px;
+        width: 98%;
+        top: 0.5%;
+    }
+    
+    .slider-button {
+        font-size: 0.7em;
+        padding: 6px 3px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+    
+    button {
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+    
+    .formula-box {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .formula-box h2 {
+        font-size: 1.3rem;
+        margin: 10px 0;
+    }
+    
+    .input-group {
+        margin-bottom: 12px;
+    }
+    
+    .input-group input {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .unit-dropdown {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .calc-button {
+        padding: 10px 25px;
+        font-size: 1rem;
+        margin: 12px 0;
+    }
+    
+    .display {
+        font-size: 1.3rem;
+        padding: 12px;
+        margin: 12px auto;
+        width: 100%;
+    }
+    
+    .graph-container {
+        width: 100%;
+        padding: 12px;
+        margin: 15px auto;
+    }
+    
+    .graph-container canvas {
+        height: 200px !important;
+    }
+    
+    .remove-cable {
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+    }
+    
+    .add-cable-button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 360px) {
+    .content {
+        margin-top: 65px;
+    }
+    
+    .slider-container {
+        height: 45px;
+    }
+    
+    .slider-button {
+        font-size: 0.65em;
+        padding: 5px 2px;
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+    
+    .formula-box h2 {
+        font-size: 1.2rem;
+    }
+    
+    button {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+    
+    .calc-button {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .display {
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+}
+
+/* Pantallas muy grandes */
+@media (min-width: 1600px) {
+    .content {
+        max-width: 1400px;
+    }
+    
+    .slider-container {
+        max-width: 1000px;
+    }
+    
+    .graph-container {
+        max-width: 1000px;
+    }
+    
+    .graph-container canvas {
+        height: 350px !important;
+    }
+}
+
+/* Modo landscape en móviles */
+@media (max-height: 500px) and (orientation: landscape) {
+    .content {
+        margin-top: 60px;
+    }
+    
+    .slider-container {
+        top: 0.5%;
+        height: 45px;
+    }
+    
+    .graph-container {
+        padding: 10px;
+    }
+    
+    .graph-container canvas {
+        height: 150px !important;
+    }
+    
+    .formula-box {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .input-group {
+        margin-bottom: 8px;
+    }
+}
+
+/* Ajustes para alta densidad de píxeles */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .graph-container canvas {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Soporte para modo oscuro del sistema */
+@media (prefers-color-scheme: dark) {
+    .graph-container {
+        background: rgba(30, 30, 30, 0.95);
+    }
+    
+    .graph-container canvas {
+        background: linear-gradient(135deg, #0f1c3a, #152a57);
+    }
+}
+
+/* Impresión */
+@media print {
+    .video-background,
+    .slider-container,
+    .calc-button {
+        display: none;
+    }
+    
+    .content {
+        margin-top: 0;
+        color: black;
+        background: white;
+    }
+    
+    .graph-container {
+        background: white;
+        border: 1px solid #000;
     }
 }
